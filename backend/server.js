@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const User = require('./models/User');
 const Appointment = require('./models/Appointment');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const app = express();
