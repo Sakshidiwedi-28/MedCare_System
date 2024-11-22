@@ -4,18 +4,38 @@ import { UserPlus } from 'lucide-react';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import toast from 'react-hot-toast';
+import axios from 'axios'
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
+  const [firstName, setfirstName] = useState("")
+  
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast.success('Registration successful!');
+
+    // /register
+    // const responce = fetch()
+    // 
+    const data = {
+      firstName
+
+    }
+    const config = {
+      
+    }
+    axios.post(`https://medcaresystem-5sag--5173--d3acb9e1.local-credentialless.webcontainer.io/register`, data, config)
+    .then(response => {
+      console.log('Response:', response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+
+
     setIsLoading(false);
   };
 
@@ -40,6 +60,7 @@ export default function Register() {
             <Input
               label="First Name"
               placeholder="John"
+              value={firstName}
               required
             />
             <Input

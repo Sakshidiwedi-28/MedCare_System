@@ -13,7 +13,8 @@ export default function Login() {
     setIsLoading(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    
     
     toast.success('Login successful!');
     setIsLoading(false);
