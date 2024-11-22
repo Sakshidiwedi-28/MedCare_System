@@ -80,16 +80,16 @@ app.post('/login', async (req, res) => {
 
 // Book appointment
 app.post('/appointments', async (req, res) => {
-  const { userId, doctor, date, time, description } = req.body;
-  if (!userId || !doctor || !date || !time || !description) {
+  const { email, doctor, date, time, notes } = req.body;
+  if (!email || !doctor || !date || !time) {
     return res.status(400).send('All fields are required');
   }
   try {
-    const user = await User.findById(userId);
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).send('User not found');
     }
-    const appointment = new Appointment({ user: userId, doctor, date, time, description, status: 'pending' });
+    const appointment = new Appointment({ email, doctor, date, time, notes });
     await appointment.save();
     console.log('Appointment booked:', appointment);
     res.status(201).send('Appointment booked successfully');
