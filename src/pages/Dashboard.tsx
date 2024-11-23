@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { appointmentService } from '../services/api';
 import { Appointment } from '../types';
 import toast from 'react-hot-toast';
-import { Calendar, Clock, Phone, Mail, User, Stethoscope, FileText, MapPin } from 'lucide-react';
+import { Calendar, Clock, Phone, Mail, FileText} from 'lucide-react';
 import { formatDate } from '../lib/utils';
 
 export default function Dashboard() {
