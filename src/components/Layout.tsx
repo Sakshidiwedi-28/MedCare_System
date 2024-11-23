@@ -1,16 +1,22 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { LogIn, UserPlus, Calendar, Building2, Menu, X } from 'lucide-react';
+import { LogIn, UserPlus, Calendar, Building2, Menu, X, LayoutDashboard } from 'lucide-react';
 import { useState } from 'react';
+import { authService } from '../services/api';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const isAuthenticated = authService.isAuthenticated();
 
-  const navigation = [
-    { name: 'Login', href: '/login', icon: LogIn },
-    { name: 'Register', href: '/register', icon: UserPlus },
-    { name: 'Book Appointment', href: '/book', icon: Calendar },
-  ];
+  const navigation = isAuthenticated
+    ? [
+        { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+        { name: 'Book Appointment', href: '/book', icon: Calendar },
+      ]
+    : [
+        { name: 'Login', href: '/login', icon: LogIn },
+        { name: 'Register', href: '/register', icon: UserPlus },
+      ];
 
   return (
     <div className="min-h-screen bg-gray-50">
