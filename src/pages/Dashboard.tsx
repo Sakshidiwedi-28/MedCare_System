@@ -4,10 +4,12 @@ import { Appointment } from '../types';
 import toast from 'react-hot-toast';
 import { Calendar, Clock, Phone, Mail, FileText} from 'lucide-react';
 import { formatDate } from '../lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAppointments();
@@ -49,6 +51,11 @@ export default function Dashboard() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    navigate('/');
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -66,6 +73,9 @@ export default function Dashboard() {
             Manage your upcoming and past appointments
           </p>
         </div>
+        <button onClick={handleLogout} className="btn btn-primary">
+          Logout
+        </button>
       </div>
 
       {appointments.length === 0 ? (
