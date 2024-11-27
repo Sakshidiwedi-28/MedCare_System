@@ -26,7 +26,7 @@ function App() {
           <Route
             path="/book"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute children={undefined}>
                 <BookAppointment />
               </ProtectedRoute>
             }
@@ -34,7 +34,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute children={undefined}>
                 <Dashboard />
               </ProtectedRoute>
             }
